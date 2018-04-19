@@ -1,0 +1,51 @@
+# DO SEGMENT
+
+<do>
+  <in>
+    ([.!?][*0-9\]\)}]*)((\”\.)?)[ \t]*
+  </in>
+  <out>
+    \1\2\n
+  </out>
+</do>
+
+# DO NOT SEGMENT
+
+<dont>N\.d\.T\..</dont>
+
+# Miscellaneous short spellings
+<dont>\betc\.(?!\)?\s+[A-Z¿¡])</dont>
+<dont>\bInc\.(?!\)?\s+[A-Z¿¡])</dont>
+<dont>\bDr\.</dont>
+<dont>\bMr\.</dont>
+<dont>\bSt\.</dont>
+<dont>\bRes\.</dont>
+<dont>Jr\.</dont>
+<dont>\b[A-Z]\.</dont>
+<dont>\b[Vv]s\.</dont>
+
+# Periods followed by non-breaking space
+<dont>\. </dont>
+
+# Numbers
+<dont>\b(\d+\.)+\d+\b</dont>
+
+# Middle name capitals
+<dont>\b[A-Z]\w+([ \s]+[A-Z]\.)+[ \s]+[A-Z]</dont>
+<dont>\b[A-Z]\.[ \s]+([A-Z]\.)+[ \s]+[A-Z]</dont>
+
+# Acronyms
+<dont>\b[A-Z]{1,2}\.[ \s]*[a-záéíóú]</dont>
+
+# AM / PM
+<dont>\b[AaPp]\.[ \s]?[Mm]\.[ \s]?</dont>
+
+# Ellypsis
+<dont>\.\.\.</dont>
+
+# URLs
+<dont>(?i)(\b[a-z]+://)?\b([a-z\-_0-9]+\.)+[a-z\-_0-9]+\b</dont>
+
+# Punctuation marks at the end of a sentence followed by another punctuation mark
+#  <dont>[.!?]+(?=[.!?\]\)}])</dont>
+<dont>[.!?]+(?=[.!?])</dont>
