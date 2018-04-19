@@ -1,4 +1,5 @@
-#Contributing to xpeak
+# Contributing to xpeak
+
 If you want to contribute to this project, you're welcome! This is just a first basic version, and there are several contributions to be made:
 - The current version is only meant to run under Linux, and it was only tested in Kubuntu 14.04. It should work in other Linux distros (and perhaps Mac); it surely won't work in Windows right now. I marked with a TODO comment several parts of the code where there are known portability issues; there can be others I neglected. You can contribute to this project by porting it.
 - The current version only supports **espeak**. Support for other speech-synthesis engines might be desirable as well.
