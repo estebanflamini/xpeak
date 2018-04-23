@@ -19,7 +19,7 @@
 
 from __future__ import print_function
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 # Import needed Python packages. I like to import them whole: when you find an unqualified
 # function invocation below, either it's a built-in or it's defined somewhere in this file.
@@ -247,14 +247,14 @@ def get_args():
   if args.lang not in locales:
     terminate(_('Invalid language: %s. Valid options are %s.') % (args.lang,', '.join(locales.keys())))
 
-  input_path = '.'
   if args.do is not None:
     input_command = args.do
+    input_path = '.'
   elif args.file is not None:
     if not os.path.exists(args.file):
       terminate(_('File %s does not exist.') % args.file)
     input_file = unicode(args.file,encoding)
-    input_path = os.path.dirname(args.file)
+    input_path = os.path.dirname(args.file) or '.'
     input_command = "%s --lang %s '%s'" % (XTXT, args.lang, input_file)
     monitored_file = args.file
   if args.file is None and args.monitored_file is not None:
