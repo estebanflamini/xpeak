@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 import os
 import sys
@@ -50,6 +50,7 @@ def get_args():
       for fn2 in ['.' + args.lang,'']:
         if os.path.isfile(fn1 + fn2):
           args.rules = fn1 + fn2
+          return
 
 def set_rules():
   global ds
