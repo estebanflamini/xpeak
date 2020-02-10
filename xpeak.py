@@ -596,6 +596,8 @@ class Player:
     self.speed              = args.speed
     self.show_subst         = args.show_subst  # Should we show substituted text on screen?
     self.show_line_numbers  = args.show_line_numbers
+    # TODO Add a command line argument for this too
+    self.show_total_lines   = False
 
     self._stop_after_each_line     = args.stop_after_each_line
     self._stop_after_current_track = False
@@ -628,7 +630,10 @@ class Player:
   def show_line(self,mandatory=False):
     with self.lock:
       t = self.line if self.show_subst else self.text[self.track]
-      t = ('<%s> ' % str(self.track + 1) if self.show_line_numbers else '') + t
+      if self.show_line_numbers:
+        lineno = str(self.track + 1)
+        tot = ('/' + str(len(self.text))) if self.show_total_lines else ''
+        t = '<%s%s> %s' % (lineno,tot,t)
       say(t,track = self.track,prompt = False,mandatory=mandatory)
 
   # A method of class Player.
@@ -696,6 +701,7 @@ class Player:
           self.espeak.send_signal(signal.SIGCONT)
         self.terminated_by_stop = True
         self.espeak.terminate()
+      self._stop_after_current_track = False
 
   # A method of class Player: pause or resume the current running instance of espeak.
   # If espeak is None or terminated, do nothing.
@@ -898,7 +904,14 @@ class Player:
   # A method of class Player: show/do not show line numbers
   def toggle_line_numbers(self):
     with self.lock:
-      self.show_line_numbers = not self.show_line_numbers
+      if not self.show_line_numbers:
+        self.show_line_numbers = True
+        self.show_total_lines = False
+      elif not self.show_total_lines:
+        self.show_total_lines = True
+      else:
+        self.show_line_numbers = False
+        self.show_total_lines = False
       self.show_line()
 
   # A method of class Player: an underlying monitored file changed on disk.
