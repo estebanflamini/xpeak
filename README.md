@@ -1,3 +1,5 @@
+**Note**: I guess nobody except me knows about this project yet, but just in case: I am working on an improved version, which is likely to add a few backward incompatibilities. I expect to have it no later than the end of June. I am also considering changing the name of the project to avoid confusion with an XML-related software called 'xpeak'.
+
 **xpeak** is a (hopefully) user-friendly command-line interface to **espeak**, which allows the user to read large text files aloud with fine-grain control of the reading process.
 **espeak** is a compact open source software speech synthesizer for Linux, Windows and other platforms (source: Wikipedia).
 **xpeak** accepts a text file as input, splits it into sentences according to user‑definable rules, and forwards the sentences one at a time to be read by **espeak**. The user can stop, pause and restart the reading at any time, skip to the next/previous sentence, jump to a specific sentence by number, look for a sentence containing some text, etc. Commands are entered using single keystrokes, which allows an easy control of the program.
